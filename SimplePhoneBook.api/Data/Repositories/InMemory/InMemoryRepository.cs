@@ -1,7 +1,7 @@
 ﻿using SimplePhoneBook.api.Data.Repositories.Contracts;
 using SimplePhoneBook.api.Domain.Models;
 
-namespace SimplePhoneBook.api.Data.Repositories;
+namespace SimplePhoneBook.api.Data.Repositories.InMemory;
 
 public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : BaseEntity
 {
