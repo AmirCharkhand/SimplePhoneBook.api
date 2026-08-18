@@ -12,5 +12,5 @@ public interface IEntityRepository<T> where T : BaseEntity
 
     public void Update(T entity);
 
-    public bool Delete(Guid id);
+    public void Delete(Guid id);
 }

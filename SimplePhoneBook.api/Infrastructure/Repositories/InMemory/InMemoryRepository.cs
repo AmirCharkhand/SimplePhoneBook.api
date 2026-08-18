@@ -12,16 +12,13 @@ public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : Bas
         Items.Add(entity);
     }
 
-    public bool Delete(Guid id)
+    public void Delete(Guid id)
     {
         var toBeDeleted = GetById(id);
-        if (toBeDeleted != null)
-        {
-            Items.Remove(toBeDeleted);
-            return true;
-        }
+        if (toBeDeleted == null)
+            throw new KeyNotFoundException($"Entity with id '{id}' was not found.");
 
-        return false;
+        Items.Remove(toBeDeleted);
     }
 
     public IReadOnlyList<T> GetAll()
