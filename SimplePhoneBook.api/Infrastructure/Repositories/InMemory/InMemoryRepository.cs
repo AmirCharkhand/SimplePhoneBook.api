@@ -39,6 +39,10 @@ public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : Bas
 
     public void Update(T entity)
     {
-        throw new NotImplementedException();
+        var index = Items.FindIndex(x => x.Id == entity.Id);
+        if (index == -1)
+            throw new KeyNotFoundException($"Entity with id '{entity.Id}' was not found.");
+
+        Items[index] = entity;
     }
 }
