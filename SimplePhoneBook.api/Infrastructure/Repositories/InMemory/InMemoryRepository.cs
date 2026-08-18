@@ -1,7 +1,7 @@
-﻿using SimplePhoneBook.api.Data.Repositories.Contracts;
-using SimplePhoneBook.api.Domain.Models;
+﻿using SimplePhoneBook.api.Domain.Models;
+using SimplePhoneBook.api.Domain.Repositories;
 
-namespace SimplePhoneBook.api.Data.Repositories.InMemory;
+namespace SimplePhoneBook.api.Infrastructure.Repositories.InMemory;
 
 public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : BaseEntity
 {
@@ -12,16 +12,21 @@ public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : Bas
         Items.Add(entity);
     }
 
-    public void Delete(Guid id)
+    public bool Delete(Guid id)
     {
         var toBeDeleted = GetById(id);
         if (toBeDeleted != null)
+        {
             Items.Remove(toBeDeleted);
+            return true;
+        }
+
+        return false;
     }
 
     public PaginatedResult<T> GetAll(int page = 1, int pageSize = 10)
     {
-        var skip = page - 1 * pageSize;
+        var skip = (page - 1) * pageSize;
         var items = Items
             .OrderBy(x => x.CreatedDate)
             .Skip(skip)
@@ -32,7 +37,7 @@ public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : Bas
         var result = new PaginatedResult<T>
         {
             Items = items,
-            currentPage = page,
+            CurrentPage = page,
             Total = totalCount
         };
 

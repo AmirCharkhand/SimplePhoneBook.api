@@ -1,6 +1,7 @@
 ﻿using SimplePhoneBook.api.Domain.Models;
+using SimplePhoneBook.api.Infrastructure;
 
-namespace SimplePhoneBook.api.Data.Repositories.Contracts;
+namespace SimplePhoneBook.api.Domain.Repositories;
 
 public interface IEntityRepository<T> where T : BaseEntity
 {
@@ -12,5 +13,5 @@ public interface IEntityRepository<T> where T : BaseEntity
 
     public void Update(T entity);
 
-    public void Delete(Guid id);
+    public bool Delete(Guid id);
 }
