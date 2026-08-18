@@ -24,24 +24,9 @@ public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : Bas
         return false;
     }
 
-    public PaginatedResult<T> GetAll(int page = 1, int pageSize = 10)
+    public IReadOnlyList<T> GetAll()
     {
-        var skip = (page - 1) * pageSize;
-        var items = Items
-            .OrderBy(x => x.CreatedDate)
-            .Skip(skip)
-            .Take(pageSize)
-            .ToList();
-
-        var totalCount = Items.Count();
-        var result = new PaginatedResult<T>
-        {
-            Items = items,
-            CurrentPage = page,
-            Total = totalCount
-        };
-
-        return result;
+        return Items;
     }
 
     public T? GetById(Guid id)

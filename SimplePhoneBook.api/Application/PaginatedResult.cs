@@ -1,6 +1,6 @@
 ﻿using SimplePhoneBook.api.Domain.Models;
 
-namespace SimplePhoneBook.api.Infrastructure;
+namespace SimplePhoneBook.api.Application;
 
 public class PaginatedResult<T> where T : BaseEntity
 {
