@@ -35,5 +35,24 @@ namespace SimplePhoneBook.api.Controllers
             tagRepository.Create(tag);
             return Ok(tag.ToResponseDto());
         }
+
+        [HttpPut("{id:guid}")]
+        public IActionResult UpdateTag(Guid id, TagRequestDto tagDto)
+        {
+            var existingTag = tagRepository.GetById(id);
+            if (existingTag == null)
+                return NotFound();
+
+            tagDto.ApplyTo(existingTag);
+            tagRepository.Update(existingTag);
+            return Ok(existingTag.ToResponseDto());
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteTag(Guid id)
+        {
+            tagRepository.Delete(id);
+            return Ok();
+        }
     }
 }

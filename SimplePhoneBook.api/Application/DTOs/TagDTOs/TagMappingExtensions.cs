@@ -14,4 +14,7 @@ public static class TagMappingExtensions
     {
         Description = dto.Description
     };
+
+    public static void ApplyTo(this TagRequestDto dto, Tag tag)
+        => tag.Description = dto.Description;
 }
