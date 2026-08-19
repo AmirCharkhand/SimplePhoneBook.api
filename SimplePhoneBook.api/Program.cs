@@ -1,4 +1,5 @@
-using SimplePhoneBook.api.Domain.Models;
+using SimplePhoneBook.api.Application.Services;
+using SimplePhoneBook.api.Application.Services.Interfaces;
 using SimplePhoneBook.api.Domain.Repositories;
 using SimplePhoneBook.api.Infrastructure.Repositories.InMemory;
 
@@ -12,6 +13,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ITagRepository, InMemoryTagRepository>();
 builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();
+
+builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 var app = builder.Build();
 
