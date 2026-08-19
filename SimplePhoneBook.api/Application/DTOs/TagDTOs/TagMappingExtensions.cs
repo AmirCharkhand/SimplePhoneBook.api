@@ -9,4 +9,9 @@ public static class TagMappingExtensions
         Id = tag.Id,
         Description = tag.Description
     };
+
+    public static Tag ToTag(this TagRequestDto dto) => new()
+    {
+        Description = dto.Description
+    };
 }
