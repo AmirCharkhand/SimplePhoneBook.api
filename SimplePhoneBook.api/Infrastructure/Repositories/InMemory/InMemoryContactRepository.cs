@@ -5,4 +5,8 @@ namespace SimplePhoneBook.api.Infrastructure.Repositories.InMemory;
 
 public class InMemoryContactRepository : InMemoryRepository<Contact>, IContactRepository
 {
+    public InMemoryContactRepository()
+    {
+        Items = SeedData.Contacts.ToList();
+    }
 }

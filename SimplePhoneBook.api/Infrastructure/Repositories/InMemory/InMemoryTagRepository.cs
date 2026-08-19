@@ -5,4 +5,8 @@ namespace SimplePhoneBook.api.Infrastructure.Repositories.InMemory;
 
 public class InMemoryTagRepository : InMemoryRepository<Tag>, ITagRepository
 {
+    public InMemoryTagRepository()
+    {
+        Items = SeedData.Tags.ToList();
+    }
 }
