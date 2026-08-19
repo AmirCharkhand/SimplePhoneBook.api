@@ -23,7 +23,7 @@ public abstract class InMemoryRepository<T> : IEntityRepository<T> where T : Bas
 
     public IReadOnlyList<T> GetAll()
     {
-        return Items;
+        return Items.AsReadOnly();
     }
 
     public T? GetById(Guid id)
