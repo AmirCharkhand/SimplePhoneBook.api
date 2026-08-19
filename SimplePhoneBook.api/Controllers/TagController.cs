@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SimplePhoneBook.api.Application.DTOs.TagDTOs;
 using SimplePhoneBook.api.Domain.Repositories;
 
 namespace SimplePhoneBook.api.Controllers
@@ -11,7 +12,8 @@ namespace SimplePhoneBook.api.Controllers
         public IActionResult GetTags()
         {
             var tags = tagRepository.GetAll();
-            return Ok(tags);
+            var dtos = tags.Select(t => t.ToResponseDto()).ToList();
+            return Ok(dtos);
         }
     }
 }
