@@ -10,10 +10,4 @@ public abstract class BaseEntity
         Id = Guid.NewGuid();
         CreatedDate = DateTime.UtcNow;
     }
-
-    protected BaseEntity(Guid id, DateTime createdDate)
-    {
-        Id = id;
-        CreatedDate = createdDate;
-    }
 }
