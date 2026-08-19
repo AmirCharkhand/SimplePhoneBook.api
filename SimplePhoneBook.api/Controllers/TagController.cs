@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SimplePhoneBook.api.Application.DTOs.TagDTOs;
-using SimplePhoneBook.api.Domain.Models;
 using SimplePhoneBook.api.Domain.Repositories;
 
 namespace SimplePhoneBook.api.Controllers
@@ -52,7 +51,7 @@ namespace SimplePhoneBook.api.Controllers
         public IActionResult DeleteTag(Guid id)
         {
             tagRepository.Delete(id);
-            return Ok();
+            return NoContent();
         }
     }
 }
