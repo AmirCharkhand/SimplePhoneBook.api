@@ -9,4 +9,13 @@ public class InMemoryContactRepository : InMemoryRepository<Contact>, IContactRe
     {
         Items = SeedData.Contacts.ToList();
     }
+
+    public IReadOnlyList<Contact> GetContactsByTagId(Guid tagId)
+    {
+        var result = Items
+            .Where(c => c.TagId == tagId)
+            .ToList();
+
+        return result.AsReadOnly();
+    }
 }
