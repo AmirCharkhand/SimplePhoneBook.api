@@ -1,3 +1,7 @@
+using SimplePhoneBook.api.Domain.Models;
+using SimplePhoneBook.api.Domain.Repositories;
+using SimplePhoneBook.api.Infrastructure.Repositories.InMemory;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IEntityRepository<Contact>, InMemoryContactRepository>();
+builder.Services.AddSingleton<IEntityRepository<Tag>, InMemoryTagRepository>();
 
 var app = builder.Build();
 
