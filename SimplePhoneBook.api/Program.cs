@@ -10,8 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IEntityRepository<Contact>, InMemoryContactRepository>();
-builder.Services.AddSingleton<IEntityRepository<Tag>, InMemoryTagRepository>();
+builder.Services.AddSingleton<ITagRepository, InMemoryTagRepository>();
+builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();
 
 var app = builder.Build();
 
